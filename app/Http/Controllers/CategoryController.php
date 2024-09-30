@@ -22,7 +22,11 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('categories.create');
+        return view('categories.create', [
+            'action' => route('categories.store'),
+            'method' => 'POST',
+            'buttonText' => 'Create Category'
+        ]);
     }
 
     /**
@@ -68,7 +72,7 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Category $category)
     {
         // Validate the request data
         $validatedData = $request->validate([

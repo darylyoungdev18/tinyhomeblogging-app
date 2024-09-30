@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Post;
+use App\Models\Category;
 use Illuminate\Support\Facades\Auth; // Import Auth facade if needed
 
 
@@ -35,11 +36,11 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-    $validateData = $request->validate([
+    $validatedData = $request->validate([
         'title' => 'required|unique:posts|max:255',
         'subtitle' => 'nullable|max:255',
         'body' => 'required',
-        'image' => 'nullable|image|mimes:jpeg,png,jpg,svg|max:2048'
+        'image' => 'nullable|image|mimes:jpeg,png,jpg,svg|max:2048',
     ]);
 
     if ($request->hasFile('image')) {
@@ -89,7 +90,7 @@ class PostController extends Controller
     public function update(Request $request, Post $post)
     {
         $validatedData = $request->validate([
-            'title' => 'required|unique:posts,title,' . $post->id . '|max:255',
+            'title' => 'required|unique:posts,title' . $post->id . '|max:255',
             'subtitle' => 'nullable|max:255',
             'body' => 'required',
             'image'=> 'nullable|image|mimes:jpg,jpeg,png,svg|max:2048'
