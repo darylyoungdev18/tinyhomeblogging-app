@@ -22,6 +22,13 @@ class PostController extends Controller
         return view('posts.index', compact('posts'));  // this grab the latest post
     }
 
+    public function dashboard()
+    {
+        $posts = Post::latest()->take(3)->get();
+
+        return view('dashboard', compact('posts'));
+    }
+
     /**
      * Show the form for creating a new resource.
      */
