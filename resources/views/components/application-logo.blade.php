@@ -1,1 +1,1 @@
-<img style="width:50px; height:50px;" src="/storage/images/Tiny-Home-Logo.jpg">
+<img class="w-12 h-12" src="/storage/images/Tiny-Home-Logo.jpg">
